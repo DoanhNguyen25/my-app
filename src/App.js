@@ -1,26 +1,77 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Maingame from './components/Maingame';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class RandomGame extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      randomNumber : 0
+    }
+  }
+  componentDidMount() {
+    this.setState({
+      randomNumber: this.ramDom()
+    })
+  }
+
+  // ///function
+  ramDom = () => {
+    return Math.floor(Math.random() * 100) + 1;
+  }
+  // currentOnChage = (ev) => {
+  //   this.setState({
+  //     currentGuessing: Number(ev.target.value)
+  //   })
+  // }
+  // guessing = () => {
+  //   var { currentGuessing, randomNumber, message, numberGuessing } = this.state;
+  //   message = "";
+  //   if (currentGuessing > randomNumber) {
+  //     message = "your number is bigger"
+  //   }
+  //   else if (currentGuessing < randomNumber) {
+  //     message = "your number is smaller";
+  //   }
+  //   else {
+  //     message = "congrastulation!!!!"
+  //     alert(message)
+  //   }
+  //   numberGuessing++;
+  //   this.setState({ message, numberGuessing });
+  //   if (numberGuessing > 5) {
+  //     alert('bạn đã thua!!!');
+  //     this.newGame();
+  //   }
+  //   if (currentGuessing === 0) {
+  //     alert("bạn cần nhập số cần kiểm tra!!")
+  //     this.setState({
+  //       numberGuessing: 0,
+  //       currentGuessing: 0,
+  //       message: "",
+  //     })
+  //   }
+  // }
+  // newGame = () => {
+  //   this.setState({
+  //     numberGuessing: 0,
+  //     currentGuessing: 0,
+  //     randomNumber: 0,
+  //     message: "",
+  //   })
+  // }
+
+  render() {
+
+    return (
+      <div>
+        <Header randomNumber = {this.state.randomNumber} />
+        <Maingame randomNumber = {this.state.randomNumber} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default RandomGame;
